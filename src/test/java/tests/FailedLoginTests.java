@@ -1,19 +1,29 @@
 package tests;
 
+import driver.manager.DriverUtils;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import page.objects.LoginPage;
 
+import static navigation.ApplicationURLs.LOGIN_URL;
 import static org.testng.Assert.assertTrue;
 
 public class FailedLoginTests extends TestBase{
+
+    @BeforeMethod
+    public void beforeMethod() {
+        super.beforeMethod();
+        DriverUtils.navigateToPage(LOGIN_URL);
+    }
 
     @Test
     public void asUserTryToLoginWithInvalidEmailAndPassword() {
 
         LoginPage loginPage = new LoginPage();
-        loginPage.typeIntoEmailInput("NotExistingEmail@email.com");
-        loginPage.typeIntoPasswordInput("NotExistingPassword");
-        loginPage.clickLoginButton();
+        loginPage
+            .typeIntoEmailInput("NotExistingEmail@email.com")
+            .typeIntoPasswordInput("NotExistingPassword")
+            .clickLoginButton();
 
         assertTrue(loginPage.isAlertWithProperAlertMessageDisplayed("Authentication failed"));
     }
@@ -22,9 +32,10 @@ public class FailedLoginTests extends TestBase{
     public void asUserTryToLoginWithCorrectEmailAndInvalidPassword() {
 
         LoginPage loginPage = new LoginPage();
-        loginPage.typeIntoEmailInput("hendryka1993@gmail.com");
-        loginPage.typeIntoPasswordInput("NotValidPassword");
-        loginPage.clickLoginButton();
+        loginPage
+            .typeIntoEmailInput("hendryka1993@gmail.com")
+            .typeIntoPasswordInput("NotValidPassword")
+            .clickLoginButton();
 
         assertTrue(loginPage.isAlertWithProperAlertMessageDisplayed("Authentication failed"));
     }

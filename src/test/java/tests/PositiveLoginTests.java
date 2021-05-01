@@ -1,9 +1,10 @@
 package tests;
 
+import driver.manager.DriverUtils;
 import org.testng.annotations.Test;
 import page.objects.LoginPage;
-import page.objects.MyAccountPage;
 
+import static navigation.ApplicationURLs.LOGIN_URL;
 import static org.testng.Assert.assertTrue;
 
 public class PositiveLoginTests extends TestBase{
@@ -11,12 +12,14 @@ public class PositiveLoginTests extends TestBase{
     @Test
     public void asUserLoginUsingValidEmailAndPassword() {
 
+        DriverUtils.navigateToPage(LOGIN_URL);
         LoginPage loginPage = new LoginPage();
-        loginPage.typeIntoEmailInput("hendryka1993@gmail.com");
-        loginPage.typeIntoPasswordInput("SKVet12#");
-        loginPage.clickLoginButton();
+        boolean isMyAccountPageAfterLoginDisplayed = loginPage
+                .typeIntoEmailInput("hendryka1993@gmail.com")
+                .typeIntoPasswordInput("SKVet12#")
+                .clickLoginButton()
+                .isMyAccountPageAfterLoginDisplayed();
 
-        MyAccountPage myAccountPage = new MyAccountPage();
-        assertTrue(myAccountPage.isMyAccountPageAfterLoginDisplayed());
+        assertTrue(isMyAccountPageAfterLoginDisplayed);
     }
 }

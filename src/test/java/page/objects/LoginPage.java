@@ -1,13 +1,16 @@
 package page.objects;
 
 import driver.manager.DriverManager;
-import org.openqa.selenium.WebDriver;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import waits.WaitForElement;
 
 public class LoginPage {
+
+    private Logger logger = LogManager.getRootLogger();
 
     @FindBy(id = "email")
     private WebElement emailInput;
@@ -25,20 +28,28 @@ public class LoginPage {
         PageFactory.initElements(DriverManager.getWebDriver(),this);
     }
 
-    public void typeIntoEmailInput(String email) {
+    public LoginPage typeIntoEmailInput(String email) {
         emailInput.sendKeys(email);
+        logger.info("Typed into email field: {}", email);
+        return this;
     }
 
-    public void typeIntoPasswordInput(String password) {
+    public LoginPage typeIntoPasswordInput(String password) {
         passwordInput.sendKeys(password);
+        logger.info("Typed into passwor field: {}", password);
+        return this;
     }
 
-    public void clickLoginButton() {
+    public MyAccountPage clickLoginButton() {
         submitLogin.click();
+        logger.info("Clicked on login button");
+        return new MyAccountPage();
     }
 
     public boolean isAlertWithProperAlertMessageDisplayed(String alertMessage) {
         WaitForElement.waitUntilElementIsVisible(alert);
-        return alert.getText().contains(alertMessage);
+        String actualAlertMessage = alert.getText();
+        logger.info("Returned warning message: {}", actualAlertMessage);
+        return actualAlertMessage.contains(alertMessage);
     }
 }
