@@ -13,6 +13,7 @@ public class PositiveLoginTests extends TestBase{
     public void asUserLoginUsingValidEmailAndPassword() {
 
         DriverUtils.navigateToPage(LOGIN_URL);
+
         LoginPage loginPage = new LoginPage();
         boolean isMyAccountPageAfterLoginDisplayed = loginPage
                 .typeIntoEmailInput("hendryka1993@gmail.com")

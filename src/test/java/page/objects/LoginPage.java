@@ -19,10 +19,11 @@ public class LoginPage {
     private WebElement passwordInput;
 
     @FindBy(id = "SubmitLogin")
-    private WebElement submitLogin;
+    private WebElement submitLoginButton;
 
     @FindBy(css = ".alert li")
     private WebElement alert;
+
 
     public LoginPage() {
         PageFactory.initElements(DriverManager.getWebDriver(),this);
@@ -36,12 +37,12 @@ public class LoginPage {
 
     public LoginPage typeIntoPasswordInput(String password) {
         passwordInput.sendKeys(password);
-        logger.info("Typed into passwor field: {}", password);
+        logger.info("Typed into password field: {}", password);
         return this;
     }
 
     public MyAccountPage clickLoginButton() {
-        submitLogin.click();
+        submitLoginButton.click();
         logger.info("Clicked on login button");
         return new MyAccountPage();
     }
@@ -50,6 +51,7 @@ public class LoginPage {
         WaitForElement.waitUntilElementIsVisible(alert);
         String actualAlertMessage = alert.getText();
         logger.info("Returned warning message: {}", actualAlertMessage);
-        return actualAlertMessage.contains(alertMessage);
+        return actualAlertMessage.equals(alertMessage);
     }
+
 }
