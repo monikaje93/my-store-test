@@ -21,6 +21,7 @@ public class RegistrationFormSecondStep {
     private WebElement createAccountForm;
 
     //Personal data
+
     @FindBy(id = "id_gender1")
     private WebElement titleMrRadio;
 
@@ -54,6 +55,50 @@ public class RegistrationFormSecondStep {
     @FindBy(id = "optin")
     private WebElement specialOffersCheckbox;
 
+    //Address data
+
+    @FindBy(id = "firstname")
+    private WebElement firstNameAddress;
+
+    @FindBy(id = "lastname")
+    private WebElement lastNameAddress;
+
+    @FindBy(id = "company")
+    private WebElement company;
+
+    @FindBy(id = "address1")
+    private WebElement address;
+
+    @FindBy(id = "address2")
+    private WebElement addressLine2;
+
+    @FindBy(id = "city")
+    private WebElement city;
+
+    @FindBy(id = "id_state")
+    private WebElement state;
+
+    @FindBy(id = "postcode")
+    private WebElement zipCode;
+
+    @FindBy(id = "id_country")
+    private WebElement country;
+
+    @FindBy(id = "other")
+    private WebElement additionalInfo;
+
+    @FindBy(id = "phone")
+    private WebElement homePhone;
+
+    @FindBy(id = "phone_mobile")
+    private WebElement mobilePhone;
+
+    @FindBy(id = "alias")
+    private WebElement addressAlias;
+
+    @FindBy(id = "submitAccount")
+    private WebElement registerButton;
+
 
     public RegistrationFormSecondStep() {
         PageFactory.initElements(DriverManager.getWebDriver(), this);
@@ -69,13 +114,37 @@ public class RegistrationFormSecondStep {
         return this;
     }
 
-    public void fillInPersonalInformation(Title title, String firstName, String lastName, String email, Calendar dateOfBirth,
+    public RegistrationFormSecondStep fillInPersonalInformation(Title title, String firstName, String lastName, String email, String password, Calendar dateOfBirth,
                                           boolean isNewsletterChecked, boolean isSpecialOfferChecked) {
         checkTitleRadio(title);
-        typeIntoFirstNameField(firstName);
-        typeIntoLastNameField(lastName);
-        typeIntoEmailField(email);
+        typeIntoField(this.firstName, firstName, "first name");
+        typeIntoField(this.lastName, lastName, "last name");
+        typeIntoField(this.email, email, "email");
+        typeIntoField(this.password, password, "password");
         selectDateOfBirth(dateOfBirth);
+
+        return this;
+    }
+
+    public RegistrationFormSecondStep fillInAddressInformation(String firstNameAddress, String lastNameAddress, String company, String addressLine1, String addressLine2,
+                                         String city, State state, String zipCode, Country country, String additionalInfo, String homePhone,
+                                         String mobilePhone, String addressAlias) {
+        typeIntoField(this.firstNameAddress, firstNameAddress, "first name");
+        typeIntoField(this.lastNameAddress, lastNameAddress, "last name");
+        typeIntoField(this.company, company, "company");
+        typeIntoField(this.address, addressLine1, "address");
+        typeIntoField(this.addressLine2, addressLine2, "address line 2");
+        typeIntoField(this.city, city, "city");
+        selectState(state);
+        typeIntoField(this.zipCode, zipCode, "zip code");
+        selectCountry(country);
+        typeIntoField(this.additionalInfo, additionalInfo, "additional info");
+        typeIntoField(this.homePhone, homePhone, "home phone");
+        typeIntoField(this.mobilePhone, mobilePhone, "mobile phone");
+        this.addressAlias.clear();
+        typeIntoField(this.addressAlias, addressAlias, "address alias");
+
+        return this;
     }
 
     public void checkTitleRadio(Title title) {
@@ -84,25 +153,15 @@ public class RegistrationFormSecondStep {
         } else if(title == Title.MRS) {
             titleMrsRadio.click();
         }
+        logger.info("Selected title in title field: {}", title.getTitleText());
     }
 
-    public void typeIntoFirstNameField(String testedFirstName) {
-        firstName.sendKeys(testedFirstName);
-        logger.info("Typed into first name field: {}", testedFirstName);
-    }
-
-    public void typeIntoLastNameField(String testedLastName) {
-        lastName.sendKeys(testedLastName);
-        logger.info("Typed into last name field: {}", testedLastName);
-    }
-
-    public void typeIntoEmailField(String testedEmail) {
-        email.sendKeys(testedEmail);
-        logger.info("Typed into email field: {}", testedEmail);
+    public void typeIntoField(WebElement webElement, String content, String description) {
+        webElement.sendKeys(content);
+        logger.info("Typed into {} field: {}", description, content);
     }
 
     public void selectDateOfBirth(Calendar testedDateOfBirth) {
-
         Select day = new Select(dateOfBirthDay);
         day.selectByValue(String.valueOf(testedDateOfBirth.get(Calendar.DAY_OF_MONTH)));
 
@@ -114,5 +173,23 @@ public class RegistrationFormSecondStep {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
         logger.info("Selected date in date of birth field: {}", sdf.format(testedDateOfBirth.getTime()));
+    }
+
+    public void selectState(State state) {
+        Select stateSelect = new Select(this.state);
+        stateSelect.selectByVisibleText(state.getVisibleText());
+        logger.info("Selected state in state field: {}", state.getVisibleText());
+    }
+
+    public void selectCountry(Country country) {
+        Select countrySelect = new Select(this.country);
+        countrySelect.selectByVisibleText(country.getVisibleText());
+        logger.info("Selected country in country field: {}", country.getVisibleText());
+    }
+
+    public MyAccountPage clickRegisterButton() {
+        registerButton.click();
+        logger.info("Clicked on register button");
+        return new MyAccountPage();
     }
 }

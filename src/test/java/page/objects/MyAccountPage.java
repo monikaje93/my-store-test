@@ -10,13 +10,13 @@ import waits.WaitForElement;
 public class MyAccountPage {
 
     @FindBy(className = "navigation_page")
-    WebElement myAccountLabel;
+    WebElement pageLabel;
 
     public MyAccountPage() {
         PageFactory.initElements(DriverManager.getWebDriver(),this);
     }
 
     public boolean isMyAccountPageAfterLoginDisplayed() {
-        return myAccountLabel.isDisplayed();
+        return pageLabel.getText().equals("My account");
     }
 }

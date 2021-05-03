@@ -1,6 +1,16 @@
 package page.objects;
 
 public enum Title {
-    MR,
-    MRS;
+    MR ("Mr."),
+    MRS ("Mrs.");
+
+    private String titleText;
+
+    private Title(String titleText) {
+        this.titleText = titleText;
+    }
+
+    public String getTitleText() {
+        return titleText;
+    }
 }
