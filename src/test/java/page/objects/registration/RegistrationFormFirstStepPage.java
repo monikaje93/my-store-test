@@ -1,4 +1,4 @@
-package page.objects;
+package page.objects.registration;
 
 
 import driver.manager.DriverManager;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import waits.WaitForElement;
 
-public class RegistrationFormFirstStep {
+public class RegistrationFormFirstStepPage {
     private Logger logger = LogManager.getRootLogger();
 
     @FindBy(id = "email_create")
@@ -21,20 +21,20 @@ public class RegistrationFormFirstStep {
     @FindBy(css = "#create_account_error li")
     private WebElement alert;
 
-    public RegistrationFormFirstStep() {
+    public RegistrationFormFirstStepPage() {
         PageFactory.initElements(DriverManager.getWebDriver(), this);
     }
 
-    public RegistrationFormFirstStep typeIntoEmailInputForAccountCreation(String email) {
+    public RegistrationFormFirstStepPage typeIntoEmailInputForAccountCreation(String email) {
         createAccountEmail.sendKeys(email);
         logger.info("Typed into email field in Create Account form: {}", email);
         return this;
     }
 
-    public RegistrationFormSecondStep clickCreateAnAccountButton() {
+    public RegistrationFormSecondStepPage clickCreateAnAccountButton() {
         createAccountButton.click();
         logger.info("Clicked on Create an account button");
-        return new RegistrationFormSecondStep();
+        return new RegistrationFormSecondStepPage();
     }
 
     public boolean isAlertWithProperAlertMessageDisplayed(String alertMessage) {

@@ -3,7 +3,7 @@ package tests;
 import driver.manager.DriverUtils;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import page.objects.LoginPage;
+import page.objects.login.LoginPage;
 
 import static navigation.ApplicationURLs.LOGIN_URL;
 import static org.testng.Assert.assertTrue;
@@ -18,7 +18,6 @@ public class FailedLoginTests extends TestBase{
 
     @Test
     public void asUserTryToLoginWithInvalidEmailAndPassword() {
-
         LoginPage loginPage = new LoginPage();
         loginPage
             .typeIntoEmailInput("NotExistingEmail@email.com")
@@ -30,7 +29,6 @@ public class FailedLoginTests extends TestBase{
 
     @Test
     public void asUserTryToLoginWithCorrectEmailAndInvalidPassword() {
-
         LoginPage loginPage = new LoginPage();
         loginPage
             .typeIntoEmailInput("hendryka1993@gmail.com")
@@ -42,7 +40,6 @@ public class FailedLoginTests extends TestBase{
 
     @Test
     public void asUserTryToLoginWithNoEmail() {
-
         LoginPage loginPage = new LoginPage();
         loginPage.clickLoginButton();
 

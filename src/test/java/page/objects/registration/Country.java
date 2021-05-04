@@ -1,4 +1,4 @@
-package page.objects;
+package page.objects.registration;
 
 public enum Country {
     UNITED_STATES("United States");

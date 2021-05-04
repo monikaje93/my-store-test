@@ -1,4 +1,4 @@
-package page.objects;
+package page.objects.registration;
 
 import driver.manager.DriverManager;
 import org.apache.logging.log4j.LogManager;
@@ -7,13 +7,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import page.objects.login.MyAccountPage;
 import waits.WaitForElement;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
-public class RegistrationFormSecondStep {
+public class RegistrationFormSecondStepPage {
 
     Logger logger = LogManager.getRootLogger();
 
@@ -100,7 +101,7 @@ public class RegistrationFormSecondStep {
     private WebElement registerButton;
 
 
-    public RegistrationFormSecondStep() {
+    public RegistrationFormSecondStepPage() {
         PageFactory.initElements(DriverManager.getWebDriver(), this);
     }
 
@@ -109,13 +110,13 @@ public class RegistrationFormSecondStep {
         return createAccountForm.isDisplayed();
     }
 
-    public RegistrationFormSecondStep waitUntilPageIsLoaded() {
+    public RegistrationFormSecondStepPage waitUntilPageIsLoaded() {
         WaitForElement.waitUntilElementIsVisible(createAccountForm);
         return this;
     }
 
-    public RegistrationFormSecondStep fillInPersonalInformation(Title title, String firstName, String lastName, String email, String password, Calendar dateOfBirth,
-                                          boolean isNewsletterChecked, boolean isSpecialOfferChecked) {
+    public RegistrationFormSecondStepPage fillInPersonalInformation(Title title, String firstName, String lastName, String email, String password, Calendar dateOfBirth,
+                                                                    boolean isNewsletterChecked, boolean isSpecialOfferChecked) {
         checkTitleRadio(title);
         typeIntoField(this.firstName, firstName, "first name");
         typeIntoField(this.lastName, lastName, "last name");
@@ -126,9 +127,9 @@ public class RegistrationFormSecondStep {
         return this;
     }
 
-    public RegistrationFormSecondStep fillInAddressInformation(String firstNameAddress, String lastNameAddress, String company, String addressLine1, String addressLine2,
-                                         String city, State state, String zipCode, Country country, String additionalInfo, String homePhone,
-                                         String mobilePhone, String addressAlias) {
+    public RegistrationFormSecondStepPage fillInAddressInformation(String firstNameAddress, String lastNameAddress, String company, String addressLine1, String addressLine2,
+                                                                   String city, State state, String zipCode, Country country, String additionalInfo, String homePhone,
+                                                                   String mobilePhone, String addressAlias) {
         typeIntoField(this.firstNameAddress, firstNameAddress, "first name");
         typeIntoField(this.lastNameAddress, lastNameAddress, "last name");
         typeIntoField(this.company, company, "company");

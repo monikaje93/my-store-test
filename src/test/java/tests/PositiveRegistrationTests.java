@@ -2,8 +2,10 @@ package tests;
 
 import driver.manager.DriverUtils;
 import org.testng.annotations.Test;
-import page.objects.*;
-
+import page.objects.registration.Country;
+import page.objects.registration.RegistrationFormFirstStepPage;
+import page.objects.registration.State;
+import page.objects.registration.Title;
 import java.util.Calendar;
 
 import static navigation.ApplicationURLs.LOGIN_URL;
@@ -13,11 +15,10 @@ public class PositiveRegistrationTests extends TestBase{
 
     @Test
     public void asUserProvideCorrectNonRegisteredEmailForRegistrationFirstStep() {
-
         DriverUtils.navigateToPage(LOGIN_URL);
 
-        RegistrationFormFirstStep registrationFormFirstStep = new RegistrationFormFirstStep();
-        boolean isCreateAnAccountFormDisplayed = registrationFormFirstStep
+        RegistrationFormFirstStepPage registrationFormFirstStepPage = new RegistrationFormFirstStepPage();
+        boolean isCreateAnAccountFormDisplayed = registrationFormFirstStepPage
                 .typeIntoEmailInputForAccountCreation("email111@email.com")
                 .clickCreateAnAccountButton()
                 .isCreateAnAccountFormDisplayed();
@@ -27,14 +28,13 @@ public class PositiveRegistrationTests extends TestBase{
 
     @Test
     public void asUserRegisterUsingCorrectRegistrationData() {
-
         DriverUtils.navigateToPage(LOGIN_URL);
 
         Calendar dateOfBirth = Calendar.getInstance();
         dateOfBirth.set(1980, 10, 11);
 
-        RegistrationFormFirstStep registrationFormFirstStep = new RegistrationFormFirstStep();
-        boolean isMyAccountPageAfterLoginDisplayed = registrationFormFirstStep
+        RegistrationFormFirstStepPage registrationFormFirstStepPage = new RegistrationFormFirstStepPage();
+        boolean isMyAccountPageAfterLoginDisplayed = registrationFormFirstStepPage
                 .typeIntoEmailInputForAccountCreation("email1112@email.com")
                 .clickCreateAnAccountButton()
                 .waitUntilPageIsLoaded()

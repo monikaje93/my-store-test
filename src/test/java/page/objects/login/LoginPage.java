@@ -1,4 +1,4 @@
-package page.objects;
+package page.objects.login;
 
 import driver.manager.DriverManager;
 import org.apache.logging.log4j.LogManager;
