@@ -30,7 +30,7 @@ public class FailedLoginTests extends TestBase{
     public void asUserTryToLoginWithCorrectEmailAndInvalidPassword() {
         LoginPage loginPage = new LoginPage();
         loginPage
-            .typeIntoEmailInput("hendryka1993@gmail.com")
+            .typeIntoEmailInput("email1188@email.com")
             .typeIntoPasswordInput("NotValidPassword")
             .clickLoginButton();
 

@@ -15,7 +15,7 @@ public class FailedRegistrationTests extends TestBase{
 
         RegistrationFormFirstStepPage registrationFormFirstStepPage = new RegistrationFormFirstStepPage();
         registrationFormFirstStepPage
-                .typeIntoEmailInputForAccountCreation("hendryka1993@gmail.com")
+                .typeIntoEmailInputForAccountCreation("email1188@email.com")
                 .clickCreateAnAccountButton();
 
         assertTrue(registrationFormFirstStepPage.isAlertWithProperAlertMessageDisplayed(

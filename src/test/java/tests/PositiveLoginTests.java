@@ -15,8 +15,8 @@ public class PositiveLoginTests extends TestBase{
 
         LoginPage loginPage = new LoginPage();
         boolean isMyAccountPageAfterLoginDisplayed = loginPage
-                .typeIntoEmailInput("hendryka1993@gmail.com")
-                .typeIntoPasswordInput("SKVet12#")
+                .typeIntoEmailInput("email1188@email.com")
+                .typeIntoPasswordInput("12345")
                 .clickLoginButton()
                 .isMyAccountPageAfterLoginDisplayed();
 

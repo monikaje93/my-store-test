@@ -1,6 +1,5 @@
 package page.objects.registration;
 
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import page.objects.BasePage;

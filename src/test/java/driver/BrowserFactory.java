@@ -15,11 +15,11 @@ public class BrowserFactory {
             case FIREFOX:
                 System.setProperty("webdriver.gecko.driver", "C:/drivers/geckodriver.exe");
                 return new FirefoxDriver();
-            case IE:
-                System.setProperty("webdriver.ie.driver", "C:/drivers/IEDriverServer.exe");
-                return new InternetExplorerDriver();
+//            case IE:
+//                System.setProperty("webdriver.ie.driver", "C:/drivers/IEDriverServer.exe");
+//                return new InternetExplorerDriver();
             default:
-                throw new IllegalStateException("Unknown browser type! Please check your configuration");
+                throw new IllegalStateException("Unknown browser type. Please check your configuration");
         }
     }
 }
