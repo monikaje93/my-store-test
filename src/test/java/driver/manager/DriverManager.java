@@ -3,21 +3,21 @@ package driver.manager;
 import driver.BrowserFactory;
 import driver.BrowserType;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class DriverManager {
 
     private static WebDriver driver;
-    private static final BrowserType BROWSER_TYPE = BrowserType.CHROME;
+    private static BrowserType browserType;
 
-    //Singleton pattern, private constructor allows to create only one instance of WebDriver
-    private DriverManager() {
+
+    public DriverManager(BrowserType browserType) {
+        this.browserType = browserType;
     }
 
     public static WebDriver getWebDriver() {
 
         if (driver==null) {
-            driver = BrowserFactory.getBrowser(BROWSER_TYPE);
+            driver = BrowserFactory.getBrowser(browserType);
         }
 
         return driver;
@@ -25,10 +25,11 @@ public class DriverManager {
 
     public static void disposeDriver() {
         driver.close();
-        if(!BROWSER_TYPE.equals(BrowserType.FIREFOX)) {
+        if(!browserType.equals(BrowserType.FIREFOX)) {
             driver.quit();
         }
         driver = null;
     }
+
 
 }

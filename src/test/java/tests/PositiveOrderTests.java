@@ -11,7 +11,7 @@ import static org.testng.Assert.assertTrue;
 public class PositiveOrderTests extends TestBase{
 
     @Test
-    public void asUserMakeSuccessfulOrder() {
+    public void asLoggedInUserMakeSuccessfulOrder() {
         DriverUtils.navigateToPage(LOGIN_URL);
 
         LoginPage loginPage = new LoginPage();

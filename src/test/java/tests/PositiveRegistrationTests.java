@@ -19,7 +19,7 @@ public class PositiveRegistrationTests extends TestBase{
 
         RegistrationFormFirstStepPage registrationFormFirstStepPage = new RegistrationFormFirstStepPage();
         boolean isCreateAnAccountFormDisplayed = registrationFormFirstStepPage
-                .typeIntoEmailInputForAccountCreation("email111@email.com")
+                .typeIntoEmailInputForAccountCreation("email1115@email.com")
                 .clickCreateAnAccountButton()
                 .isCreateAnAccountFormDisplayed();
 
@@ -35,7 +35,7 @@ public class PositiveRegistrationTests extends TestBase{
 
         RegistrationFormFirstStepPage registrationFormFirstStepPage = new RegistrationFormFirstStepPage();
         boolean isMyAccountPageAfterLoginDisplayed = registrationFormFirstStepPage
-                .typeIntoEmailInputForAccountCreation("email1112@email.com")
+                .typeIntoEmailInputForAccountCreation("email1117@email.com")
                 .clickCreateAnAccountButton()
                 .waitUntilPageIsLoaded()
                 .fillInPersonalInformation(Title.MR, "Anna", "Nowak", "","12345", dateOfBirth,

@@ -1,22 +1,18 @@
 package page.objects.login;
 
-import driver.manager.DriverManager;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import page.objects.BasePage;
 import waits.WaitForElement;
 
-public class MyAccountPage {
+public class MyAccountPage extends BasePage {
 
     @FindBy(className = "navigation_page")
     WebElement pageLabel;
 
-    public MyAccountPage() {
-        PageFactory.initElements(DriverManager.getWebDriver(),this);
-    }
 
     public boolean isMyAccountPageAfterLoginDisplayed() {
+        WaitForElement.waitUntilElementIsVisible(pageLabel);
         return pageLabel.getText().equals("My account");
     }
 }

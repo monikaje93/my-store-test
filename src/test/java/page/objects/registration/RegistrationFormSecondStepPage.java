@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import page.objects.BasePage;
 import page.objects.login.MyAccountPage;
 import waits.WaitForElement;
 
@@ -14,9 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
-public class RegistrationFormSecondStepPage {
-
-    Logger logger = LogManager.getRootLogger();
+public class RegistrationFormSecondStepPage extends BasePage {
 
     @FindBy(id = "account-creation_form")
     private WebElement createAccountForm;
@@ -101,10 +100,6 @@ public class RegistrationFormSecondStepPage {
     private WebElement registerButton;
 
 
-    public RegistrationFormSecondStepPage() {
-        PageFactory.initElements(DriverManager.getWebDriver(), this);
-    }
-
     public boolean isCreateAnAccountFormDisplayed() {
         waitUntilPageIsLoaded();
         return createAccountForm.isDisplayed();
@@ -154,12 +149,12 @@ public class RegistrationFormSecondStepPage {
         } else if(title == Title.MRS) {
             titleMrsRadio.click();
         }
-        logger.info("Selected title in title field: {}", title.getTitleText());
+        log().info("Selected title in title field: {}", title.getTitleText());
     }
 
     public void typeIntoField(WebElement webElement, String content, String description) {
         webElement.sendKeys(content);
-        logger.info("Typed into {} field: {}", description, content);
+        log().info("Typed into {} field: {}", description, content);
     }
 
     public void selectDateOfBirth(Calendar testedDateOfBirth) {
@@ -173,24 +168,24 @@ public class RegistrationFormSecondStepPage {
         year.selectByValue(String.valueOf(testedDateOfBirth.get(Calendar.YEAR)));
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
-        logger.info("Selected date in date of birth field: {}", sdf.format(testedDateOfBirth.getTime()));
+        log().info("Selected date in date of birth field: {}", sdf.format(testedDateOfBirth.getTime()));
     }
 
     public void selectState(State state) {
         Select stateSelect = new Select(this.state);
         stateSelect.selectByVisibleText(state.getVisibleText());
-        logger.info("Selected state in state field: {}", state.getVisibleText());
+        log().info("Selected state in state field: {}", state.getVisibleText());
     }
 
     public void selectCountry(Country country) {
         Select countrySelect = new Select(this.country);
         countrySelect.selectByVisibleText(country.getVisibleText());
-        logger.info("Selected country in country field: {}", country.getVisibleText());
+        log().info("Selected country in country field: {}", country.getVisibleText());
     }
 
     public MyAccountPage clickRegisterButton() {
         registerButton.click();
-        logger.info("Clicked on register button");
+        log().info("Clicked on register button");
         return new MyAccountPage();
     }
 }

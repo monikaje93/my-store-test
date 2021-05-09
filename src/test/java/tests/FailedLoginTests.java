@@ -11,8 +11,7 @@ import static org.testng.Assert.assertTrue;
 public class FailedLoginTests extends TestBase{
 
     @BeforeMethod
-    public void beforeMethod() {
-        super.beforeMethod();
+    public void beforeLoginTests() {
         DriverUtils.navigateToPage(LOGIN_URL);
     }
 
@@ -24,7 +23,7 @@ public class FailedLoginTests extends TestBase{
             .typeIntoPasswordInput("NotExistingPassword")
             .clickLoginButton();
 
-        assertTrue(loginPage.isAlertWithProperAlertMessageDisplayed("Authentication failed"));
+        assertTrue(loginPage.isAlertWithProperAlertMessageDisplayed("Authentication failed."));
     }
 
     @Test
@@ -35,7 +34,7 @@ public class FailedLoginTests extends TestBase{
             .typeIntoPasswordInput("NotValidPassword")
             .clickLoginButton();
 
-        assertTrue(loginPage.isAlertWithProperAlertMessageDisplayed("Authentication failed"));
+        assertTrue(loginPage.isAlertWithProperAlertMessageDisplayed("Authentication failed."));
     }
 
     @Test
@@ -43,6 +42,6 @@ public class FailedLoginTests extends TestBase{
         LoginPage loginPage = new LoginPage();
         loginPage.clickLoginButton();
 
-        assertTrue(loginPage.isAlertWithProperAlertMessageDisplayed("An email address required"));
+        assertTrue(loginPage.isAlertWithProperAlertMessageDisplayed("An email address required."));
     }
 }
